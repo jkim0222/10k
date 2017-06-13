@@ -15,13 +15,10 @@ def check_dup(data, duplicated):
     dup = 0
     for i in range(1, n):
         if data[i] != data[i - 1]:
-            if dup:
-                dup = 0
+            if dup: dup = 0
         else:
-            if dup == 0:
-                dup = 2 # Initialize with 2
-            else:
-                dup += 1
+            if dup == 0: dup = 2    # Initialize with 2
+            else: dup += 1
             duplicated.update({data[i]:dup})
 
 def main(debug):
@@ -52,7 +49,7 @@ def main(debug):
     n_duplicated = len(duplicated)
     print("[4] There are", n_duplicated, "numbers appeard more than 2 times.")
 
-
+    if debug > 1: show(duplicated.items())
     dup_sorted = sorted(duplicated.items(), key=operator.itemgetter(1))
     if debug > 1: show(dup_sorted)
     print("[5] ", end = '')
@@ -69,11 +66,10 @@ def main(debug):
 
     dup_sorted.reverse()
     if debug > 1: show(dup_sorted)
-
     print("[6] ", end = '')
     for i in range(10):
         if i > 0 and i < 10: print(", ", end = '')
         print("(" + str(dup_sorted[i][0]) +  ", " + str(dup_sorted[i][1]) + ")", end = '')
     print(" are the top 10 tuples.")
 
-main(2)
+main(1)
